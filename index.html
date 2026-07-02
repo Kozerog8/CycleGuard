@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CycleGuard Portal - Premium IoT Bike Recovery</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet.js Map Library CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg viewBox="0 0 100 100" class="nav-logo">
+                    <circle cx="50" cy="50" r="45" fill="#0d3b66"/>
+                    <path d="M50,20 L75,35 C75,60 65,80 50,90 C35,80 25,60 25,35 Z" fill="white"/>
+                    <path d="M50,30 L67,41 C67,58 60,72 50,80 C40,72 33,58 33,41 Z" fill="#00b4d8"/>
+                </svg>
+                <span class="brand-text">CycleGuard <span class="badge-tag">Portal</span></span>
+            </div>
+            
+            <div class="nav-controls">
+                <div class="profile-selector">
+                    <label for="country-select">Regional Domain:</label>
+                    <select id="country-select" onchange="changeCountry()">
+                        <option value="nl">trackbike.nl (Netherlands)</option>
+                        <option value="de">trackbike.de (Germany)</option>
+                        <option value="us">trackbike.us (United States)</option>
+                        <option value="uk">trackbike.co.uk (United Kingdom)</option>
+                        <option value="fr">trackbike.fr (France)</option>
+                    </select>
+                </div>
+                <button class="btn-sound-toggle" id="sound-btn" onclick="toggleAudioInit()">
+                    <span id="sound-icon">🔈</span> Mute Audio
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="main-container">
+        
+        <!-- Left Side: Product Details, Strategy, Personas -->
+        <section class="left-panel">
+            
+            <!-- Hero Introduction -->
+            <div class="hero-card glass">
+                <h1 class="hero-title">CycleGuard IoT Security</h1>
+                <p class="hero-tagline">The direct, public-safety-integrated recovery network for modern urban commuter and sport cyclists.</p>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🛡️</div>
+                        <h4>Privacy Isolation</h4>
+                        <p>No riding logs. GPS is 100% offline & encrypted while you cycle.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🚨</div>
+                        <h4>Two-Stage CAD</h4>
+                        <p>60-second confirmation window before direct police dispatch.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">👁️</div>
+                        <h4>Newcastle Deterrent</h4>
+                        <p>Reflective eye decals warning thieves of the direct police integration.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Strategic framework -->
+            <div class="card glass strategic-card">
+                <h3 class="section-title">Strategic framework & Legal Compliance</h3>
+                <p class="section-subtitle">Adaptive compliance under regional regulations.</p>
+                
+                <div class="compliance-box" id="compliance-info">
+                    <!-- Dynamic details inserted by JS based on country selection -->
+                </div>
+
+                <div class="pricing-tiers">
+                    <h4>Monetization Tiers</h4>
+                    <div class="tiers-grid">
+                        <div class="tier-box">
+                            <h5>Basic</h5>
+                            <p class="tier-price" id="tier-basic-price">Free</p>
+                            <ul>
+                                <li>Safe Parking Map</li>
+                                <li>10m Bluetooth alert</li>
+                            </ul>
+                        </div>
+                        <div class="tier-box active">
+                            <h5>Standard</h5>
+                            <p class="tier-price" id="tier-standard-price">$5/mo</p>
+                            <ul>
+                                <li>Two-Stage Alert</li>
+                                <li>CAD Police Dispatch</li>
+                            </ul>
+                        </div>
+                        <div class="tier-box">
+                            <h5>Premium</h5>
+                            <p class="tier-price" id="tier-premium-price">$12/mo</p>
+                            <ul>
+                                <li>Up to 3 devices</li>
+                                <li>Insurance subsidy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fictional Personas & Hypothesis Explorer -->
+            <div class="card glass personas-card">
+                <h3 class="section-title">Persona Research & Hypothesis Validation</h3>
+                <p class="section-subtitle">Analyzing willingness to pay vs. trust in law enforcement.</p>
+                <div class="hypothesis-summary">
+                    <p><strong>Tested Hypothesis:</strong> Trust in municipal databases acts as the ultimate gatekeeper for signup. Low-trust users refuse to link their location details directly to police CAD databases regardless of their bicycle value.</p>
+                </div>
+                
+                <div class="persona-explorer">
+                    <div class="persona-select-container">
+                        <label for="persona-select">Explore Persona Profiling:</label>
+                        <select id="persona-select" onchange="showPersonaDetails()">
+                            <!-- Generated dynamically by JS -->
+                        </select>
+                    </div>
+                    <div class="persona-details-box" id="persona-info">
+                        <!-- Dynamic details inserted by JS -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Right Side: Interactive Phone Simulator Dashboard -->
+        <section class="right-panel">
+            <div class="phone-frame shadow-glow">
+                
+                <!-- Screen Header -->
+                <div class="phone-screen-header">
+                    <div class="screen-brand">
+                        <svg viewBox="0 0 100 100" class="screen-brand-logo">
+                            <circle cx="50" cy="50" r="45" fill="#0d3b66"/>
+                            <path d="M50,20 L75,35 C75,60 65,80 50,90 C35,80 25,60 25,35 Z" fill="white"/>
+                        </svg>
+                        CycleGuard
+                    </div>
+                    <div class="screen-connection">
+                        <span class="pulse-indicator" id="connection-indicator"></span>
+                        <span id="connection-text">Connected</span>
+                    </div>
+                </div>
+
+                <!-- Screen Body -->
+                <div class="phone-screen-body">
+                    
+                    <!-- Alert Banner for Stage 1 Alarm -->
+                    <div class="alert-banner" id="stage1-banner">
+                        <div class="alert-banner-content">
+                            <div class="banner-icon-container">⚠️</div>
+                            <div class="banner-text-container">
+                                <strong>STAGE 1: LOCK BREAK DETECTED</strong>
+                                <span class="countdown-subtext">Police dispatch in <span id="countdown-sec">15</span> seconds.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alert Banner for Stage 2 Alarm -->
+                    <div class="police-banner" id="stage2-banner">
+                        <div class="police-banner-content">
+                            <div class="banner-icon-container police-flasher">🚓</div>
+                            <div class="banner-text-container">
+                                <strong>STAGE 2: POLICE DISPATCHED</strong>
+                                <span class="police-subtext">CAD Event #<span id="cad-id">1084</span> Transmitted.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Status Display Card -->
+                    <div class="status-panel">
+                        <div class="status-meta">DEVICE SENTRY STATUS</div>
+                        <div class="status-value" id="status-display-badge">SECURE & ARMED</div>
+                        
+                        <!-- Toggle Ring -->
+                        <div class="toggle-ring-outer" id="lock-ring" onclick="toggleLockState()">
+                            <div class="toggle-ring-inner">
+                                <div class="lock-graphic-svg" id="lock-icon-svg">
+                                    <!-- Dynamic lock SVG -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-main-action" id="sentry-btn" onclick="toggleLockState()">DISARM SECURITY</button>
+                    </div>
+
+                    <!-- Map Container -->
+                    <div class="map-panel">
+                        <div class="map-panel-header">
+                            <span class="map-header-title">LIVE GPS TRACKER</span>
+                            <span class="map-header-status" id="map-status-label">ARMED GEOFENCE</span>
+                        </div>
+                        <div class="map-viewport-wrapper">
+                            <div id="map"></div>
+                            <!-- Privacy Isolation Overlay -->
+                            <div class="map-privacy-overlay" id="privacy-overlay">
+                                <div class="privacy-overlay-content">
+                                    <div class="privacy-lock-icon">🔒</div>
+                                    <h3>Privacy Isolation Engaged</h3>
+                                    <p>GPS tracking is powered off while riding. Your locations are not tracked or saved.</p>
+                                    <span class="privacy-badge">Compliance Approved</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="map-panel-footer">
+                            <div class="telemetry-info" id="telemetry-display">
+                                <strong>State:</strong> Parked Still (Lock Alert Active)<br>
+                                <strong>Coordinates:</strong> 52.3702° N, 4.8952° E
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event Log List -->
+                    <div class="log-panel">
+                        <h4 class="log-panel-title">Sentry Incident Log</h4>
+                        <div class="logs-wrapper" id="phone-logs">
+                            <!-- Dynamic log items inserted by JS -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Simulation Controls Floating Panel -->
+                <div class="simulation-dashboard">
+                    <h4>Demo Control Dashboard</h4>
+                    <div class="sim-controls-grid">
+                        <button class="btn-sim" id="sim-bump-btn" onclick="triggerBumpSimulation()">🔨 Simulate Bump/Theft</button>
+                        <button class="btn-sim red" id="sim-force-btn" onclick="triggerForceDispatch()" disabled>🚨 Force CAD Dispatch</button>
+                        <button class="btn-sim green" id="sim-reset-btn" onclick="resetAppSimulation()">🔄 Reset Simulation</button>
+                    </div>
+                    <div class="sim-note">
+                        Use the dashboard to simulate threat levels and view how the map behaves during dynamic events.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer-bar">
+        <p>&copy; 2026 CycleGuard Ecosystem. Developed using public-safety guidelines & privacy-first cryptographic architectures.</p>
+    </footer>
+
+    <!-- Leaflet.js Map Library JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- App Logic JS -->
+    <script src="app.js"></script>
+</body>
+</html>
