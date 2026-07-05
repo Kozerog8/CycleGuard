@@ -68,7 +68,7 @@ No installation is required to view the web dashboard and simulation portal:
   ```powershell
   python run_app.py
   ```
-  Then visit: `http://localhost:8000/index.html`
+  Then visit: `https://kozerog8.github.io/CycleGuard/`
 
 ### Running the Live Theft Simulator:
 1. Open the page and click **🔈 Mute Audio** if you wish to silent the synthesized alarms.
